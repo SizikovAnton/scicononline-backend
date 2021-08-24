@@ -1,8 +1,12 @@
 <?php
 
+use App\Events\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Http\Controllers\MessageController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\HallController;
+use App\Http\Controllers\PosterController;
+use App\Http\Controllers\SectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +23,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('/messages', 'MessageController');
+Route::apiResource('messages', MessageController::class);
+Route::apiResource('halls', HallController::class);
+Route::apiResource('posters', PosterController::class);
+Route::apiResource('sections', SectionController::class);
+
+Route::apiResource('halls.messages', MessageController::class);

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Hall;
+use App\Models\Section;
 use Illuminate\Http\Request;
 
-class HallController extends Controller
+class SectionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class HallController extends Controller
      */
     public function index()
     {
-        return Hall::all();
+        return Section::all();
     }
 
     /**
@@ -31,34 +31,33 @@ class HallController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Hall  $hall
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Hall $hall)
+    public function show(Section $section)
     {
-        return $hall;
+        return $section;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Hall  $hall
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hall $hall)
+    public function update(Request $request, $id)
     {
-        // $hall = Hall::findOrFail($hall);
-        $hall->update($request->all());
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Hall  $hall
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Hall $hall)
+    public function destroy($id)
     {
         //
     }

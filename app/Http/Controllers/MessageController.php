@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MessageSent;
+use App\Models\Hall;
 use App\Models\Message;
 use Illuminate\Http\Request;
 
@@ -12,20 +14,14 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Hall $hall = null)
     {
-        return Message::all();
+        if ($hall) {
+            return $hall->messages;
+        } else {
+            return Message::all();
+        }
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function create()
-    // {
-    //     //
-    // }
 
     /**
      * Store a newly created resource in storage.
@@ -35,8 +31,9 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        $message = Message::create($request);
-        return $message;
+        $message = Message::create($request->toArray());
+        broadcast(new MessageSent($message));
+        // TODO Добавить отправку статуса
     }
 
     /**
@@ -47,40 +44,6 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
-        return $message = Message::findOrFail($message);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    // public function edit(Message $message)
-    // {
-    //     //
-    // }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Message $message)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Message  $message
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Message $message)
-    {
-        //
+        return $message;
     }
 }

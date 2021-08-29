@@ -27,7 +27,7 @@ class PosterController extends Controller
     {
 
         $fileUrl = $request->file('file')->store('posters');
-        $request["file"] = $fileUrl;
+        $request->file = $fileUrl;
 
         $poster = Poster::create($request->toArray());
 

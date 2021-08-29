@@ -26,6 +26,7 @@ class PosterController extends Controller
     public function store(Request $request)
     {
         $poster = Poster::create($request->toArray());
+        return $poster;
     }
 
     /**

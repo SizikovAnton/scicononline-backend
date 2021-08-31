@@ -18,7 +18,11 @@ class MessageController extends Controller
     {
         if ($hall) {
             return $hall->messages;
+            // return array_filter($hall->messages->toArray(), fn ($item) => date("d.m.y", strtotime($item["created_at"])) == date("d.m.y"));
+            // return $hall->messages->filter(fn ($item) => date("d.m.y", strtotime($item["created_at"])) == date("d.m.y"));
         } else {
+            // return array_filter(Message::all()->toArray(), fn ($item) => date("d.m.y", strtotime($item["created_at"])) == date("d.m.y"));
+            // return array_filter(Message::all()->toArray(), fn ($item) => date("d.m.y", strtotime($item["created_at"])) == date("d.m.y"));
             return Message::all();
         }
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Poster;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 class PosterController extends Controller
 {
@@ -26,12 +27,15 @@ class PosterController extends Controller
     public function store(Request $request)
     {
 
-        $fileUrl = $request->file('file')->store('posters');
-        $request->file = $fileUrl;
+        $fileUrl = $request->file('file')->storePublicly('posters_files', 'public');
+        $fileUrl = asset("storage/" . $fileUrl);
 
-        $poster = Poster::create($request->toArray());
+        $input = $request->all();
+        $input["file"] = $fileUrl;
 
-        return $poster;
+        $poster = Poster::create($input);
+
+        return $input;
     }
 
     /**

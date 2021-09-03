@@ -9,5 +9,5 @@ class Poster extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['author', 'file', 'room_url', 'section_id', 'title'];
+    protected $fillable = ['author', 'file', 'room_url', 'section_id', 'title', 'key'];
 }

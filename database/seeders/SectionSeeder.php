@@ -23,8 +23,5 @@ class SectionSeeder extends Seeder
         DB::table('sections')->insert([
             'title' => 'Biophotonics'
         ]);
-        DB::table('sections')->insert([
-            'title' => 'Laser Diagnostics and Spectroscopy'
-        ]);
     }
 }

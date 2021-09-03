@@ -49,7 +49,7 @@ class HallController extends Controller
     public function update(Request $request, Hall $hall)
     {
         // $hall = Hall::findOrFail($hall);
-        $hall->update($request->all());
+        // $hall->update($request->all());
     }
 
     /**

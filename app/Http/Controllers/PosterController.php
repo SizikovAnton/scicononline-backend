@@ -54,6 +54,6 @@ class PosterController extends Controller
      */
     public function update(Request $request, Poster $poster)
     {
-        $poster->update($request->all());
+        // $poster->update($request->all());
     }
 }
